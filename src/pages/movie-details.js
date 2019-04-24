@@ -3,14 +3,24 @@ import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Movies from "../components/movies"
+import MovieImage from "../components/movieImg"
 
-const SecondPage = ({ location }) => (
-  <Layout>
-    <SEO title="Page two" />
-    <h1>{ location.state.title }</h1>
-    <Link to="/">Go back to the homepage</Link>
+const SecondPage = ({ location }) => {
+  const { data } = location.state;
+  const { 
+    title,
+    overview,
+    poster_path
+  } = data;
+
+  return (<Layout>
+    <SEO title={title} />
+    <h1>{ title }</h1>
+    <p>{ overview }</p>
+    <MovieImage path={poster_path} />
+    <Link to="/page-2/">Back to List</Link>
   </Layout>
 )
+}
 
 export default SecondPage;
